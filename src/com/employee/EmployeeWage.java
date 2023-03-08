@@ -1,8 +1,7 @@
 package com.employee;
 
 public class EmployeeWage {
-    public static void main(String[] args) {
-        System.out.println("WELCOME TO EMPLOYEE WAGE COMPUTATION PROGRAMME");
+
         private static final int IS_FULL_TIME = 1;
         private static final int IS_PART_TIME = 2;
         private static final int EMP_WAGE_PER_HOUR = 20;
