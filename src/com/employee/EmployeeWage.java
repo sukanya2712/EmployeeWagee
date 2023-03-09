@@ -2,47 +2,48 @@ package com.employee;
 
 public class EmployeeWage {
 
-    private static final int IS_FULL_TIME = 1;
-    private static final int IS_PART_TIME = 2;
-    private static final int EMP_WAGE_PER_HOUR = 20;
-    private static final int WORKING_DAYS_PER_MONTH = 20;
-    private static final int TOTAL_WORKING_HOURS = 100;
+    public static void wagesofEmployees(String company, int wageperhour, int maxworkingDays, int maxworkingHrs){
+        final int IS_FULL_TIME = 1;
+        final int IS_PART_TIME = 2;
 
-    public static void wagesofEmployees(){
+        System.out.println("COMPANY name                             :" + company);
+        System.out.println("WAGE per hour                            :" + wageperhour);
+        System.out.println("MAXWORKDAYS maximum working days         :" + maxworkingDays);
+        System.out.println("MAXIMUMWORKHRS maximum working hours     :" + maxworkingHrs);
+
         int empHrs=0, empWagePerMonth = 0, totalWorkingDays=0, totalEmpHours = 0;
 
-        while(totalEmpHours <= TOTAL_WORKING_HOURS && totalWorkingDays < WORKING_DAYS_PER_MONTH) {
+        while(totalEmpHours <= maxworkingHrs && totalWorkingDays < maxworkingDays) {
 
             totalWorkingDays ++;
             int empType = (int)Math.floor(Math.random() * 10) % 3;
 
             switch (empType) {
                 case IS_FULL_TIME -> {
-                    System.out.println("Employee is Doing Full Time:");
                     empHrs = 8;
+
                 }
                 case IS_PART_TIME -> {
-                    System.out.println("Employee is Doing Part Time:");
                     empHrs = 4;
                 }
                 default -> {
-                    System.out.println("Employee is Absent:");
                     empHrs = 0;
                 }
             }
 
             totalEmpHours += empHrs;
-            int empWagePerDay = empHrs * EMP_WAGE_PER_HOUR;
+            int empWagePerDay = empHrs * wageperhour ;
             empWagePerMonth += empWagePerDay;
 
-            System.out.println("Emp Wage Per Day : "+empWagePerDay);
         }
 
-        System.out.println("Emp Wage Per Month : "+empWagePerMonth);
+        System.out.println("TOTALEMPHRS total emp hours              :" + totalEmpHours);
+        System.out.println("WAGEPERMONTH emp Wage Per Month          :" + empWagePerMonth);
     }
     public static void main(String[] args){
         System.out.println("Welcome to Employee Wage Computation program");
-        wagesofEmployees();
-        }
+        wagesofEmployees("BCG",20,24 ,100);
+        wagesofEmployees("MCKINESY",30,20,100);
+        wagesofEmployees("E&Y",40,20 , 100);
     }
-
+}
