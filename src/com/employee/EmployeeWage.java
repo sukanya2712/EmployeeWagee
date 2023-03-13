@@ -2,48 +2,73 @@ package com.employee;
 
 public class EmployeeWage {
 
-    public static void wagesofEmployees(String company, int wageperhour, int maxworkingDays, int maxworkingHrs){
-        final int IS_FULL_TIME = 1;
-        final int IS_PART_TIME = 2;
+    static final int IS_FULL_TIME = 1;
+    static final int IS_PART_TIME = 2;
+    private int EMP_WAGE_PER_HOUR ;
+    private int FULL_TIME_HOUR ;
+    private int PART_TIME_HOUR ;
+    private int WORKING_DAYS_PER_MONTH ;
 
-        System.out.println("COMPANY name                             :" + company);
-        System.out.println("WAGE per hour                            :" + wageperhour);
-        System.out.println("MAXWORKDAYS maximum working days         :" + maxworkingDays);
-        System.out.println("MAXIMUMWORKHRS maximum working hours     :" + maxworkingHrs);
+    private int TOTAL_EMPLOYEE_WAGE ;
 
-        int empHrs=0, empWagePerMonth = 0, totalWorkingDays=0, totalEmpHours = 0;
 
-        while(totalEmpHours <= maxworkingHrs && totalWorkingDays < maxworkingDays) {
 
-            totalWorkingDays ++;
-            int empType = (int)Math.floor(Math.random() * 10) % 3;
-
-            switch (empType) {
-                case IS_FULL_TIME -> {
-                    empHrs = 8;
-
-                }
-                case IS_PART_TIME -> {
-                    empHrs = 4;
-                }
-                default -> {
-                    empHrs = 0;
-                }
-            }
-
-            totalEmpHours += empHrs;
-            int empWagePerDay = empHrs * wageperhour ;
-            empWagePerMonth += empWagePerDay;
-
-        }
-
-        System.out.println("TOTALEMPHRS total emp hours              :" + totalEmpHours);
-        System.out.println("WAGEPERMONTH emp Wage Per Month          :" + empWagePerMonth);
+    public EmployeeWage() {
     }
-    public static void main(String[] args){
-        System.out.println("Welcome to Employee Wage Computation program");
-        wagesofEmployees("BCG",20,24 ,100);
-        wagesofEmployees("MCKINESY",30,20,100);
-        wagesofEmployees("E&Y",40,20 , 100);
+
+    public EmployeeWage(int EMP_WAGE_PER_HOUR, int FULL_TIME_HOUR, int PART_TIME_HOUR, int WORKING_DAYS_PER_MONTH) {
+        this.EMP_WAGE_PER_HOUR = EMP_WAGE_PER_HOUR;
+        this.FULL_TIME_HOUR = FULL_TIME_HOUR;
+        this.PART_TIME_HOUR = PART_TIME_HOUR;
+        this.WORKING_DAYS_PER_MONTH = WORKING_DAYS_PER_MONTH;
+    }
+
+    public void calculateEmployeeWage() {
+
+        int empHours = 0 ;
+        int day = 1;
+        int totalWage = 0;
+        while (day < WORKING_DAYS_PER_MONTH && empHours <= 100) {
+            int dailyWage = 0;
+            int employeeCheck = (int) Math.floor(Math.random() * 10) % 3;
+            System.out.println(employeeCheck);
+            switch (employeeCheck) {
+                case IS_FULL_TIME:
+                    System.out.println("Employee is present");
+                    dailyWage = EMP_WAGE_PER_HOUR * FULL_TIME_HOUR;
+                    empHours += FULL_TIME_HOUR ;
+
+                    break;
+                case IS_PART_TIME:
+                    System.out.println("Employee is present");
+                    dailyWage = EMP_WAGE_PER_HOUR * PART_TIME_HOUR;
+                    empHours += PART_TIME_HOUR ;
+
+                    break;
+                default:
+                    System.out.println("Employee is absent");
+            }
+            day++;
+            totalWage += dailyWage ;
+            System.out.println("Total employee hours are " + empHours);
+            System.out.println("Total wage for " + day + " day is " + totalWage);
+        }
+        TOTAL_EMPLOYEE_WAGE = totalWage;
+
+    }
+
+    @Override
+    public String toString() {
+        return "total employee wage = " + TOTAL_EMPLOYEE_WAGE ;
+    }
+
+    public static void main(String[] args) {
+        EmployeeWage perfios  = new EmployeeWage(35,8,5,23);
+        perfios.calculateEmployeeWage();
+        System.out.println("Perfios " + perfios.toString());
+        EmployeeWage reliance = new EmployeeWage(30,14,7,24);
+        reliance.calculateEmployeeWage();
+        System.out.println("Reliance " + reliance.toString());
+
     }
 }
