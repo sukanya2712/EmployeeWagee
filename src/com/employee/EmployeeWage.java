@@ -1,5 +1,7 @@
 package com.employee;
 import java.util.Scanner;
+import java.util.ArrayList;
+
 interface Company {
     void EmpWageBuilder();
 }
@@ -63,25 +65,30 @@ public class EmployeeWage {
     public static void main(String[] args) {
 
         Scanner in = new Scanner(System.in);
-        CompanyEmpWage[] Company= new CompanyEmpWage[5];
+
+        ArrayList<CompanyEmpWage> CompanyList= new ArrayList<>();
 
         System.out.println("Welcome to Employee Wage Computation Program On Master Branch");
         System.out.println("----------------------------------------------------------------------");
 
-        for(int i=0;i<Company.length;i++){
+        for(int i=0;i<3;i++){
             System.out.println("******************:MENU:******************");
             System.out.println("PRESS 1: To Calculate the wage in a Company.");
             System.out.println("PRESS 2: To EXIT.");
             int choice= in.nextInt();
             if (choice == 1) {
                 System.out.println("Enter the details:");
-                Company[i] = new CompanyEmpWage();
+                CompanyEmpWage Company= new CompanyEmpWage();
+                CompanyList.add(Company);
                 System.out.println("_________________________________________________");
-                Company[i].EmpWageBuilder();
+                Company.EmpWageBuilder();
             }
             else
-                i=Company.length;
+                i=3;
         }
+        System.out.println(CompanyList);
 
     }
+
+
 }
